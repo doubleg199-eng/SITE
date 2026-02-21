@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- NAME INPUT SCREEN -->
+      <div class="screen active" id="login-screen">
+        <div class="login-box">
+          <h1>Welcome to Quiz Time!</h1>
+          <p>Enter your name to begin quiz</p>
+          <form id="login-form">
+            <div class="form-group">
+              <input type="text" id="username" name="username" placeholder="Enter your name" required />
+            </div>
+            <button type="submit" id="login-btn" class="primary-btn">
+              Begin Quiz
+            </button>
+          </form>
+          <p class="login-note">Your progress will be tracked automatically</p>
+        </div>
+      </div>
+
+      <div class="screen" id="start-screen">
+        <div class="user-greeting">
+          <h2 id="user-display-name"></h2>
+          <p id="motivation-message">You've got this! Let's test your knowledge!</p>
+          <button id="start-btn" class="primary-btn">Start Quiz</button>
+        </div>
+      </div>
+
+      <div class="screen" id="quiz-screen">
+        <div class="quiz-header">
+          <h2 id="question-text">Question goes here</h2>
+          <div class="quiz-info">
+            <p>
+              Question <span id="current-question">1</span> of <span id="total-questions">5</span>
+            </p>
+
+            <p>Score: <span id="score">0</span></p>
+            <p class="timer">Time: <span id="timer">35</span>s</p>
+          </div>
+        </div>
+
+        <div id="answers-container" class="answers-container">
+          <!-- Answer buttons will be insterted here from our js code later at some point -->
+        </div>
+
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
+        
+        <div class="quiz-buttons">
+          <button id="pause-btn" class="pause-btn">Pause</button>
+          <button id="give-up-btn" class="give-up-btn">Give Up Quiz</button>
+        </div>
+      </div>
+
+      <!-- PAUSE OVERLAY -->
+      <div id="pause-overlay" class="pause-overlay">
+        <div class="pause-content">
+          <h2>Quiz Paused</h2>
+          <p>Take a break and come back whenever you're ready!</p>
+          <button id="resume-btn" class="primary-btn">Resume Quiz</button>
+        </div>
+      </div>
+      
+      <!-- SPARKLE OVERLAY -->
+      <div id="sparkle-overlay" class="sparkle-overlay" aria-hidden="true">
+        <div class="sparkle-center">
+          <div class="sparkle-star star-1"></div>
+          <div class="sparkle-star star-2"></div>
+          <div class="sparkle-star star-3"></div>
+          <div class="sparkle-star star-4"></div>
+        </div>
+      </div>
+      </div>
+
+      <div id="result-screen" class="screen">
+        <div class="user-info-header">
+          <p><span id="result-user-name"></span></p>
+        </div>
+        <h1>Quiz Results</h1>
+        <div class="result-info">
+          <p>
+            You scored <span id="final-score">0</span> out of
+            <span id="max-score">5</span>
+          </p>
+
+          <div id="result-message">Good job!</div>
+        </div>
+        <button id="restart-btn" class="primary-btn">Restart Quiz</button>
+        <button id="view-history-btn" class="secondary-btn">View History</button>
+      </div>
+
+      <!-- USER HISTORY SCREEN -->
+      <div id="history-screen" class="screen">
+        <div class="user-info-header">
+          <p><span id="history-user-name"></span></p>
+          <button id="back-to-menu-btn" class="logout-btn">Back to Menu</button>
+        </div>
+        <h1>Quiz History & Tracking</h1>
+        <div id="history-container" class="history-container">
+          <!-- History will be populated here -->
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
