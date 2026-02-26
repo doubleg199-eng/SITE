@@ -3,6 +3,10 @@
 const loginScreen = document.getElementById("login-screen");
 const loginForm = document.getElementById("login-form");
 const usernameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
+const togglePasswordBtn = document.getElementById("toggle-password");
+const eyeIcon = document.getElementById("eye-icon");
+const passwordStrength = document.getElementById("password-strength");
 const loginBtn = document.getElementById("login-btn");
 const userDisplayName = document.getElementById("user-display-name");
 
@@ -1865,6 +1869,34 @@ maxScoreSpan.textContent = quizQuestions.length;
 
 // EVENT LISTENERS
 loginForm.addEventListener("submit", handleLogin);
+
+// Toggle password visibility
+togglePasswordBtn.addEventListener("click", function () {
+  const isHidden = passwordInput.type === "password";
+  passwordInput.type = isHidden ? "text" : "password";
+  eyeIcon.textContent = isHidden ? "🙈" : "👁️";
+  this.setAttribute("aria-label", isHidden ? "Hide password" : "Show password");
+  passwordInput.focus();
+});
+
+// OTP input feedback
+passwordInput.addEventListener("input", function () {
+  const val = this.value;
+  if (!val) {
+    passwordStrength.textContent = "";
+    passwordStrength.className = "password-strength";
+    return;
+  }
+  const validOTP = localStorage.getItem(OTP_KEY);
+  if (validOTP && val === validOTP) {
+    passwordStrength.textContent = "✅ OTP accepted!";
+    passwordStrength.className = "password-strength good";
+  } else {
+    passwordStrength.textContent = "";
+    passwordStrength.className = "password-strength";
+  }
+});
+
 startButton.addEventListener("click", startQuiz);
 giveUpBtn.addEventListener("click", giveUpQuiz);
 endQuizBtn.addEventListener("click", endQuiz);
@@ -1874,16 +1906,86 @@ restartButton.addEventListener("click", restartQuiz);
 viewHistoryBtn.addEventListener("click", showHistory);
 backToMenuBtn.addEventListener("click", backToStartScreen);
 
+// ── OTP SYSTEM ──────────────────────────────────────────────────────────────
+// Generates a random 8-character alphanumeric OTP, stores it in localStorage.
+// The OTP is device-specific (localStorage is per-origin per-browser) and is
+// invalidated (deleted) after one successful login.
+
+const OTP_KEY = "doubleG_quiz_otp";
+
+function generateOTP() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no ambiguous chars (0/O, 1/I)
+  let otp = "";
+  const array = new Uint8Array(8);
+  crypto.getRandomValues(array);
+  array.forEach(b => { otp += chars[b % chars.length]; });
+  return otp;
+}
+
+function getOrCreateOTP() {
+  let otp = localStorage.getItem(OTP_KEY);
+  if (!otp) {
+    otp = generateOTP();
+    localStorage.setItem(OTP_KEY, otp);
+  }
+  return otp;
+}
+
+function invalidateOTP() {
+  localStorage.removeItem(OTP_KEY);
+}
+
+// Initialise OTP display on page load
+const otpCodeEl  = document.getElementById("otp-code");
+const copyOtpBtn = document.getElementById("copy-otp-btn");
+const currentOTP = getOrCreateOTP();
+otpCodeEl.textContent = currentOTP;
+
+// Copy-to-clipboard button
+copyOtpBtn.addEventListener("click", function () {
+  navigator.clipboard.writeText(currentOTP).then(() => {
+    copyOtpBtn.textContent = "✅";
+    copyOtpBtn.classList.add("copied");
+    setTimeout(() => {
+      copyOtpBtn.textContent = "📋";
+      copyOtpBtn.classList.remove("copied");
+    }, 1500);
+  });
+});
+
 // LOGIN FUNCTIONS
 function handleLogin(e) {
   e.preventDefault();
   
   const username = usernameInput.value.trim();
+  const password = passwordInput.value;
   
   if (!username) {
-    alert("Please enter your name");
+    usernameInput.focus();
+    shakeInput(usernameInput);
     return;
   }
+  
+  if (!password) {
+    passwordInput.focus();
+    shakeInput(passwordInput);
+    return;
+  }
+  
+  // Read the current valid OTP from localStorage at submission time
+  const validOTP = localStorage.getItem(OTP_KEY);
+  
+  if (!validOTP || password !== validOTP) {
+    shakeInput(passwordInput);
+    passwordStrength.textContent = "❌ Incorrect OTP — try again";
+    passwordStrength.className = "password-strength weak";
+    passwordInput.select();
+    passwordInput.focus();
+    return;
+  }
+  
+  // OTP is correct — invalidate it immediately (one-time use)
+  invalidateOTP();
   
   // Store current user
   currentUser = {
@@ -1916,6 +2018,28 @@ function handleLogin(e) {
   loginScreen.remove();
   
   console.log(`User ${username} logged in at ${currentUser.loginTime}`);
+}
+
+// Returns 'weak' | 'fair' | 'good' | 'strong'
+function getPasswordStrength(password) {
+  let score = 0;
+  if (password.length >= 6)  score++;
+  if (password.length >= 10) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[0-9]/.test(password)) score++;
+  if (/[^A-Za-z0-9]/.test(password)) score++;
+  if (score <= 1) return "weak";
+  if (score === 2) return "fair";
+  if (score === 3) return "good";
+  return "strong";
+}
+
+// Briefly shake an input to signal an error
+function shakeInput(inputEl) {
+  inputEl.classList.remove("shake-error");
+  void inputEl.offsetWidth; // reflow to restart animation
+  inputEl.classList.add("shake-error");
+  inputEl.addEventListener("animationend", () => inputEl.classList.remove("shake-error"), { once: true });
 }
 
 function handleLogout() {

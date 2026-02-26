@@ -117,9 +117,190 @@ nav{
 }
 
 .login-note {
-  color: #999;
+  color: #888;
+  font-size: 0.85rem;
+  margin-top: 18px;
+  letter-spacing: 0.3px;
+}
+
+/* OTP DISPLAY BOX */
+.otp-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e8f4fd 100%);
+  border: 2px dashed #4facfe;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.otp-label {
+  font-size: 0.8rem;
+  color: #555;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.otp-code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #431c78;
+  letter-spacing: 3px;
+  background: rgba(67, 28, 120, 0.08);
+  padding: 3px 10px;
+  border-radius: 6px;
+  flex: 1;
+  text-align: center;
+  user-select: all;
+}
+
+.copy-otp-btn {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 4px 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s ease, transform 0.2s ease;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: normal;
+  color: #555;
+  line-height: 1;
+}
+
+.copy-otp-btn:hover {
+  background: rgba(79, 172, 254, 0.2);
+  transform: scale(1.2);
+  box-shadow: none;
+}
+
+.copy-otp-btn.copied {
+  color: #43a047;
+}
+
+/* LOGIN LOGO */
+.login-logo {
+  margin-bottom: 12px;
+  animation: bounceIn 0.8s ease-out;
+}
+
+.login-logo-icon {
+  font-size: 3rem;
+  display: inline-block;
+  filter: drop-shadow(0 4px 8px rgba(232, 106, 51, 0.4));
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* LOGIN SUBTITLE */
+.login-subtitle {
+  font-size: 0.95rem !important;
+  color: #888 !important;
+  -webkit-text-fill-color: #888 !important;
+  background: none !important;
+  margin-bottom: 22px !important;
+  font-style: italic;
+  letter-spacing: 0.3px;
+}
+
+/* FORM LABELS */
+.form-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #431c78;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.label-icon {
   font-size: 0.9rem;
-  margin-top: 20px;
+}
+
+/* PASSWORD WRAPPER */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 48px;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 4px 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  border-radius: 6px;
+  transition: background 0.2s ease, transform 0.2s ease;
+  color: #888;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: normal;
+}
+
+.toggle-password-btn:hover {
+  background: rgba(232, 106, 51, 0.12);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: none;
+}
+
+.toggle-password-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* PASSWORD STRENGTH INDICATOR */
+.password-strength {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  min-height: 18px;
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+.password-strength.weak   { color: #e53935; }
+.password-strength.fair   { color: #fb8c00; }
+.password-strength.good   { color: #43a047; }
+.password-strength.strong { color: #1e88e5; }
+
+/* LOGIN SUBMIT BUTTON */
+.login-submit-btn {
+  width: 100%;
+  margin-top: 8px;
+  font-size: 1.05rem;
+  letter-spacing: 1.5px;
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e86a33 0%, #ff8c42 50%, #ffd700 100%);
+  box-shadow: 0 6px 20px rgba(232, 106, 51, 0.4);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.login-submit-btn:hover {
+  background: linear-gradient(135deg, #ff8c42 0%, #ffd700 100%);
+  box-shadow: 0 10px 30px rgba(232, 106, 51, 0.55);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .user-info-header {
@@ -857,6 +1038,18 @@ button, .give-up-btn, .pause-btn {
 .form-group input:focus {
   box-shadow: 0 0 20px rgba(232, 106, 51, 0.4);
   transform: translateY(-2px);
+}
+
+/* Shake animation for invalid inputs */
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  15%, 45%, 75% { transform: translateX(-6px); }
+  30%, 60%, 90% { transform: translateX(6px); }
+}
+
+.shake-error {
+  animation: shakeError 0.45s ease-out;
+  border-color: #e53935 !important;
 }
 
 /* Pause button animation */

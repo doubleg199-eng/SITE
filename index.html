@@ -11,17 +11,40 @@
       <!-- NAME INPUT SCREEN -->
       <div class="screen active" id="login-screen">
         <div class="login-box">
+          <div class="login-logo">
+            <span class="login-logo-icon">🎓</span>
+          </div>
           <h1>Welcome to Double G's Quiz Time!</h1>
-          <form id="login-form">
+          <p class="login-subtitle">Sign in to track your progress</p>
+          <form id="login-form" autocomplete="off">
             <div class="form-group">
-              <input type="text" id="username" name="username" placeholder="Enter your name" required />
+              <label class="form-label" for="username">
+                <span class="label-icon">👤</span> Username
+              </label>
+              <input type="text" id="username" name="username" placeholder="Enter your name" required autocomplete="username" />
             </div>
-            <button type="submit" id="login-btn" class="primary-btn">
-              Begin Quiz
+            <div class="form-group">
+              <label class="form-label" for="password">
+                <span class="label-icon">🔒</span> One-Time Password
+              </label>
+              <div class="otp-display" id="otp-display" aria-live="polite">
+                <span class="otp-label">Your OTP for this device:</span>
+                <span class="otp-code" id="otp-code">—</span>
+                <button type="button" id="copy-otp-btn" class="copy-otp-btn" title="Copy OTP">📋</button>
+              </div>
+              <div class="password-wrapper">
+                <input type="password" id="password" name="password" placeholder="Enter the OTP above" required autocomplete="one-time-code" />
+                <button type="button" id="toggle-password" class="toggle-password-btn" aria-label="Show password">
+                  <span id="eye-icon">👁️</span>
+                </button>
+              </div>
+              <div id="password-strength" class="password-strength" aria-live="polite"></div>
+            </div>
+            <button type="submit" id="login-btn" class="primary-btn login-submit-btn">
+              🚀 Begin Quiz
             </button>
-            <!-- so ka toi -->
           </form>
-          <p class="login-note">Your progress will be tracked automatically</p>
+          <p class="login-note">🔑 This OTP is valid for one login on this device only</p>
         </div>
       </div>
 
