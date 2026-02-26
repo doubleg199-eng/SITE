@@ -21,6 +21,7 @@ const scoreSpan = document.getElementById("score");
 const progressBar = document.getElementById("progress");
 const timerSpan = document.getElementById("timer");
 const giveUpBtn = document.getElementById("give-up-btn");
+const endQuizBtn = document.getElementById("end-quiz-btn");
 const pauseBtn = document.getElementById("pause-btn");
 const pauseOverlay = document.getElementById("pause-overlay");
 const resumeBtn = document.getElementById("resume-btn");
@@ -1476,6 +1477,367 @@ const quizQuestions = [
 
     ],
   },
+  {
+    question: "The past participle of know is ......",
+    answers: [
+      { text: "Know", correct : false },
+      { text: "Knew", correct: false },
+      { text: "Known", correct: true },
+      { text: "now", correct: false },
+    ],
+  },
+  {
+    question: "6+6+6+6 is the same as?",
+    answers: [
+      { text: "6+6", correct: false },
+      { text: "6+4", correct: false },
+      { text: "6x4", correct: true },
+      { text: "6x6", correct: false },
+    ],
+  },
+  {
+    question: "We pin icons on the taskbar to have a ......",
+    answers: [
+      { text: "new icon ", correct: false },
+      { text: "nice looking taskbar", correct: false },
+      { text: "quick access to the icon", correct: true },
+      { text: "clean desktop", correct: false },
+    ],
+  },
+  {
+    question: "To change the wallpaper we right on empty and then ........ from the drop down menu. ",
+    answers: [
+      { text: "wallpaper", correct: false },
+      { text: "personalize", correct: true },
+      { text: "change", correct: false },
+      { text: "picture", correct: false },
+    ],
+  },
+  {
+    question: "what is the past tense of grow?",
+    answers: [
+      { text: "grewed", correct: false },
+      { text: "graw", correct: false },
+      { text: "grown", correct: false },
+      { text: "grew", correct: true },
+    ],
+  },
+  {
+    question: "We must close all running applications before shutting down the computer.",
+    answers: [
+      { text: "False", correct: false },
+      { text: "True", correct: true },
+ 
+    ],
+  },
+  {
+    question: "which of the following is a verb",
+    answers: [
+      { text: "parent", correct: false },
+      { text: "House", correct: false },
+      { text: "sleep", correct: true },
+      { text: "doctor", correct: false },
+    ],
+  },
+  {
+    question: ".......... is the ability to do work.",
+    answers: [
+      { text: "Gas", correct: false },
+      { text: "Science", correct: false },
+      { text: "Heat", correct: true },
+      { text: "Fire", correct: false },
+      
+    ],
+  },
+  {
+    question: "''LPG'' stands for.......",
+    answers: [
+      { text: "Liquid Petrol and Gas", correct: false },
+      { text: "Liquified Petroleum Gas", correct: true },
+      { text: "Liquid Pool Gun", correct: false },
+      { text: "Liquid Petroleum Gas", correct: false },
+    ],
+  },
+  {
+    question: "Watch out! is an example of....?",
+    answers: [
+      { text: "Shouting", correct: false },
+      { text: "Making request", correct: false },
+      { text: "Giving command", correct: false },
+      { text: "Giving warning", correct: true },
+    ],
+  },
+  {
+    question: "Which of the following sentences is making a request?",
+    answers: [
+      { text: "Be very careful!", correct : false },
+      { text: "Go home right now!", correct: false },
+      { text: "Please can you buy me a bottle of water", correct: true },
+      { text: "Come here!", correct: false },
+    ],
+  },
+  {
+    question: "My mother cook every evening. The sentence is correct.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true },
+      
+
+    ],
+  },
+  {
+    question: "My daughter .......... in Agona Swedru",
+    answers: [
+      { text: "stay", correct : false },
+      { text: "staying", correct: false },
+      { text: "stays", correct: true },
+      { text: "staysing", correct: false },
+    ],
+  },
+  {
+    question: "They ......... a lot in the classroom.",
+    answers: [
+      { text: "talken", correct: false },
+      { text: "talking", correct: false },
+      { text: "talk", correct: true },
+      { text: "talks", correct: false },
+    ],
+  },
+  {
+    question: "The past participle of 'Take' is .....",
+    answers: [
+      { text: "Token", correct: false },
+      { text: "Took", correct: false },
+      { text: "Taken", correct: true },
+      { text: "Taking", correct: false },
+    ],
+  },
+  {
+    question: "The Ghana flag has how many colours?",
+    answers: [
+      { text: "three", correct: false },
+      { text: "four", correct: true },
+      { text: "five", correct: false },
+      { text: "two", correct: false },
+    ],
+  },
+  {
+    question: "Happy, Happier, ...........",
+    answers: [
+      { text: "Happierst", correct: false },
+      { text: "Happen", correct: false },
+      { text: "Happiness", correct: false },
+      { text: "Happiest", correct: true },
+    ],
+  },
+  {
+    question: "Past tense of drink is drunk. True or False",
+    answers: [
+      { text: "False", correct: true },
+      { text: "True", correct: false },
+ 
+    ],
+  },
+  {
+    question: "I am bad in reading, but Fred is ..........",
+    answers: [
+      { text: "worst", correct: false },
+      { text: "badder", correct: false },
+      { text: "worse", correct: true },
+      { text: "worser", correct: false },
+    ],
+  },
+  {
+    question: "Chantel is the ......... in my class.",
+    answers: [
+      { text: "ugly", correct: false },
+      { text: "uglier", correct: false },
+      { text: "ugliest", correct: true },
+      { text: "uglyst", correct: false },
+      
+    ],
+  },
+  {
+    question: "Find the auxiliary verb. Sam and Greg are playing football.",
+    answers: [
+      { text: "Playing", correct: false },
+      { text: "are", correct: true },
+      { text: "and", correct: false },
+      { text: "Footbal", correct: false },
+    ],
+  },
+  {
+    question: "Find the noun. My battery is getting empty.",
+    answers: [
+      { text: "is", correct: false },
+      { text: "empty", correct: false },
+      { text: "getting", correct: false },
+      { text: "battery", correct: true },
+    ],
+  },
+  {
+    question: "All the following can be found in the desert ecosystem except?",
+    answers: [
+      { text: "Rattle snake", correct : false },
+      { text: "Camel", correct: false },
+      { text: "Water", correct: true },
+      { text: "Cactus", correct: false },
+    ],
+  },
+  {
+    question: "Abiotic element are the non-living things in an ecosystem.",
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false },
+      
+
+    ],
+  },
+  {
+    question: "Causes of imbalance in the ecosystem includes?",
+    answers: [
+      { text: "Afforestation", correct : false },
+      { text: "rain", correct: false },
+      { text: "Water pollution", correct: true },
+      { text: "farming", correct: false },
+    ],
+  },
+  {
+    question: "We have Forest, Pond, Savannah and .......... ecosystem.",
+    answers: [
+      { text: "Sky", correct: false },
+      { text: "River", correct: false },
+      { text: "Desert", correct: true },
+      { text: "Animal", correct: false },
+    ],
+  },
+  {
+    question: "The soil is shelter for a/an......",
+    answers: [
+      { text: "Butterfly", correct: false },
+      { text: "cow", correct: false },
+      { text: "ant", correct: true },
+      { text: "Ostrich", correct: false },
+    ],
+  },
+  {
+    question: "The prickly thorns of a barrel Cactus ...........",
+    answers: [
+      { text: "blocks the heat of the sun", correct: false },
+      { text: "keeps animal away", correct: true },
+      { text: "keep the water in the plant", correct: false },
+      { text: "protect the plant", correct: false },
+    ],
+  },
+  {
+    question: "Which organ is between the stomach and the large intestion",
+    answers: [
+      { text: "Oesophagus", correct: false },
+      { text: "Liver", correct: false },
+      { text: "Heart", correct: false },
+      { text: "small intestine", correct: true },
+    ],
+  },
+  {
+    question: "It takes 565 days for the earth to orbit the sun .",
+    answers: [
+      { text: "False", correct: true },
+      { text: "True", correct: false },
+ 
+    ],
+  },
+  {
+    question: "......... is the transfer of pollen from the anther part of a flower to the Stigma for plant to reproduce.",
+    answers: [
+      { text: "Nectar", correct: false },
+      { text: "Reproduction", correct: false },
+      { text: "Pollination", correct: true },
+      { text: "Pollen", correct: false },
+    ],
+  },
+  {
+    question: "Pollen of a plant is like a .........",
+    answers: [
+      { text: "leaf", correct: false },
+      { text: "Sweet drink", correct: false },
+      { text: "Powder", correct: true },
+      { text: "flower", correct: false },
+      
+    ],
+  },
+  {
+    question: "All the following plays a part in pollination except?",
+    answers: [
+      { text: "Birds", correct: false },
+      { text: "Human activities", correct: true },
+      { text: "wind", correct: false },
+      { text: "Insects", correct: false },
+    ],
+  },
+  {
+    question: "Insects are interested in the .............. of a flower.",
+    answers: [
+      { text: "leaves", correct: false },
+      { text: "colour", correct: false },
+      { text: "pollen", correct: false },
+      { text: "nectar", correct: true },
+    ],
+  },
+  {
+    question: "654 x 79 =",
+    answers: [
+      { text: "41666", correct : false },
+      { text: "61666", correct: false },
+      { text: "51666", correct: true },
+      { text: "52566", correct: false },
+    ],
+  },
+  {
+    question: "Some animals depend on plant to survive. True or False",
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false },
+      
+
+    ],
+  },
+  {
+    question: "A I stands for .........",
+    answers: [
+      { text: "Artificial Increase", correct: false },
+      { text: "Artificial Ingredient", correct: false },
+      { text: "Artificial Intelligent", correct: true },
+      { text: "Artificial Imbalance", correct: false },
+      
+    ],
+  },
+  {
+    question: "Which of the ecosystem is mostly dry?",
+    answers: [
+      { text: "Savannah ecosystem", correct: false },
+      { text: "Desert ecosystem", correct: true },
+      { text: "Forest ecosystem", correct: false },
+      { text: "Pond ecosystem", correct: false },
+    ],
+  },
+  {
+    question: "which of the following is an icon?",
+    answers: [
+      { text: "Wallpaper", correct: false },
+      { text: "Start-button", correct: false },
+      { text: "Taskbar", correct: false },
+      { text: "folder", correct: true },
+    ],
+  },
+  {
+    question: "872 x 63 =",
+    answers: [
+      { text: "54996", correct : false },
+      { text: "54926", correct: false },
+      { text: "54936", correct: true },
+      { text: "53936", correct: false },
+    ],
+  },
   
 ];
 
@@ -1505,6 +1867,7 @@ maxScoreSpan.textContent = quizQuestions.length;
 loginForm.addEventListener("submit", handleLogin);
 startButton.addEventListener("click", startQuiz);
 giveUpBtn.addEventListener("click", giveUpQuiz);
+endQuizBtn.addEventListener("click", endQuiz);
 pauseBtn.addEventListener("click", pauseQuiz);
 resumeBtn.addEventListener("click", resumeQuiz);
 restartButton.addEventListener("click", restartQuiz);
@@ -1548,6 +1911,9 @@ function handleLogin(e) {
   // Switch screens
   loginScreen.classList.remove("active");
   startScreen.classList.add("active");
+  
+  // Remove login screen since user is logged in
+  loginScreen.remove();
   
   console.log(`User ${username} logged in at ${currentUser.loginTime}`);
 }
@@ -1602,6 +1968,30 @@ function giveUpQuiz() {
     startScreen.classList.add("active");
     
     console.log(`User ${currentUser.username} gave up the quiz with score ${score}`);
+  }
+}
+
+function endQuiz() {
+  if (confirm("Are you sure you want to end the quiz and see your results?")) {
+    // Stop background music
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+    
+    // Clear timer
+    if (timerInterval) {
+      clearInterval(timerInterval);
+    }
+    
+    // Hide pause overlay
+    pauseOverlay.style.display = "none";
+    
+    // Track the attempt
+    trackUserAttempt(score, shuffledQuestions.length);
+    
+    // Show results
+    showResults();
+    
+    console.log(`User ${currentUser.username} ended the quiz with score ${score}`);
   }
 }
 
